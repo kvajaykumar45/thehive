@@ -1,0 +1,53 @@
+/*
+APPLYING MODULUS
+There are six positive integers A, B, C, D, E, and F, which satisfy A × B × C ≥ D × E × F. 
+Find the remainder when (A × B × C) - (D × E × F) is divided by (1e9+7).
+Note:
+1. (X × Y) % M = (X % M × Y % M) % M
+2. (X - Y) % M = (X % M - Y % M + M) % M
+
+Input Format: The first and only line of input contains six space-separated integers A, B, C, D, E, and F.
+
+Output Format: For the given input, print a single line representing the answer.
+
+Constraints
+0 ≤ A, B, C, D, E, F ≤ 10^18
+A × B × C ≥ D × E × F
+
+Input 2 3 5 1 2 4
+Output 22
+
+Explanation
+Since A × B × C = 2 × 3 × 5 = 30 and D × E × F = 1 × 2 × 4 = 8, 
+we have (A × B × C) - (D × E × F) = 22. When you divide 22 by (1e9+7), 
+the remainder will be 22.
+*/
+//SOURCE CODE:
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long A = sc.nextLong();
+        long B = sc.nextLong();
+        long C = sc.nextLong();
+        long D = sc.nextLong();
+        long E = sc.nextLong();
+        long F = sc.nextLong();
+        long MOD = 1000000007;
+
+        // (A * B * C) % MOD
+        long first = ((A % MOD) * (B % MOD)) % MOD;
+        first = (first * (C % MOD)) % MOD;
+
+        // (D * E * F) % MOD
+        long second = ((D % MOD) * (E % MOD)) % MOD;
+        second = (second * (F % MOD)) % MOD;
+
+        // Final Answer
+        long ans = (first - second + MOD) % MOD;
+
+        System.out.println(ans);
+    }
+}
